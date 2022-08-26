@@ -3,13 +3,13 @@ import { links } from '../data/links';
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Head>
         <title>Awesome Links</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto max-w-5xl my-20">
+      <main className="container mx-auto max-w-5xl my-20">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {links.map((link) => (
             <li key={link.id} className="shadow  max-w-md  rounded">
@@ -34,7 +34,7 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
