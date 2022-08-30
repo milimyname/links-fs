@@ -115,7 +115,7 @@ const Admin = () => {
           />
         </label>
         <label className="block">
-          <span className="text-gray-700">Upload a .png or .jpg image (max 1MB).</span>
+          <span className="text-gray-700">Upload a .png or .jpg image (max 2MB).</span>
           <input
             {...register('image', { required: true })}
             onChange={uploadPhoto}
