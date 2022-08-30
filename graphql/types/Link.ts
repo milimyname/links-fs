@@ -139,7 +139,15 @@ export const CreateLinkMutation = extendType({
         },
         async resolve(_, args, ctx) {
 
-          if(!ctx.user) throw new Error('You must be logged in to create a link')
+          if(!ctx.user) throw new Error('You must be logged in to create a link');
+
+          const user = await ctx.prisma.user.findUnique({
+            where: {
+              email: ctx.user.email
+            }
+          })
+
+          if(user.role !== 'ADMIN') throw new Error('You must be an admin to create a link');
 
           const newLink = {
             title: args.title,
