@@ -1,4 +1,4 @@
-import {objectType, extendType, intArg, stringArg, arg} from 'nexus'
+import {objectType, extendType, intArg, stringArg, arg, nonNull} from 'nexus'
 import {User} from './User'
 
 export const Link = objectType({
@@ -123,4 +123,36 @@ export const Response = objectType({
         t.field('pageInfo', { type: PageInfo }),
         t.list.field('edges', { type: Edges })
     }
+})
+
+export const CreateLinkMutation = extendType({
+    type: 'Mutation',
+    definition(t) {
+      t.nonNull.field('createLink', {
+        type: Link,
+        args:{
+          title: nonNull(stringArg()),
+          url: nonNull(stringArg()),
+          description: nonNull(stringArg()),
+          imageUrl: nonNull(stringArg()),
+          category: nonNull(stringArg())
+        },
+        async resolve(_, args, ctx) {
+
+          if(!ctx.user) throw new Error('You must be logged in to create a link')
+
+          const newLink = {
+            title: args.title,
+            url: args.url,
+            imageUrl: args.imageUrl,
+            category: args.category,
+            description: args.description,
+          }
+
+          return await ctx.prisma.link.create({
+            data: newLink
+          })
+      }
+    })
+  }
 })
