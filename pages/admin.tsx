@@ -160,7 +160,7 @@ export default Admin;
 //       return {
 //         redirect: {
 //           permanent: false,
-//           destination: '/api/auth/login',
+//            destination: '/api/auth/login',
 //         },
 //         props: {},
 //       };
