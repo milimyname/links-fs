@@ -3,7 +3,7 @@ import { relayStylePagination } from '@apollo/client/utilities';
 
 const apolloClient = new ApolloClient({
     // It'll be replaced with the real endpoint when the app is deployed.
-    uri: `${process.env.AUTH0_BASE_URL}/api/graphql`,
+    uri: `https://links-fs.vercel.app/api/graphql`,
     cache: new InMemoryCache({
         typePolicies:{
             Query:{
